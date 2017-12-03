@@ -1,4 +1,4 @@
-import  { dribbbleApi }  from '../../service/DribbbleApi.js'
+import DribbbleApi  from '../../service/DribbbleApi.js'
 
 export default {
   props:['search'],
@@ -13,9 +13,8 @@ export default {
     }
   },
   methods: {
-    getShots: dribbbleApi.getShots,
     montarDados: function() {
-      this.getShots(this.params).then(response =>{
+      DribbbleApi.getShots({page:1, per_page:50}).then(response =>{
         console.log(response);
       })
     }
