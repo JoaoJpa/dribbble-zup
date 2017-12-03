@@ -5,10 +5,19 @@ import Vue from 'vue'
 import App from './app/App.vue'
 import router from './router'
 import Vuetify from 'vuetify'
+import VueResource from 'vue-resource'
 
-Vue.use(Vuetify)
+Vue.use(VueResource);
 
-Vue.config.productionTip = false
+Vue.use(Vuetify, {theme:{
+    primary: '#2f2f2ffa',
+    secondary: '#999',
+    accent: '#8c9eff',
+    error: '#b71c1c'
+}});
+
+
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
