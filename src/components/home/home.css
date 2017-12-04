@@ -1,7 +1,21 @@
-#bar-header{
-  height: 55px;
+#content-bar-header{
+  position: relative;
+  margin-top: 64px;
 }
 
-#container-shots{
-  margin-top: 10px
+#bar-header{
+  height: 66px;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  background: #fafafa;
+  border-bottom: 1px solid lightgrey
+}
+
+#btn-favorite{
+  margin-top: 20px
+}
+
+.menu-size-grid{
+  margin-top: 10px;
 }

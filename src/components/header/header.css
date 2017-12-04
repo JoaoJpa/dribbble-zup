@@ -1,3 +1,30 @@
 .box-header{
+  position: fixed !important;
+  z-index: 1;
   box-shadow: none !important;
+}
+
+@media screen and (min-width:1px ){
+  .box-header{
+    height: 64px !important;
+  }
+}
+
+.menu-avatar{
+  margin-top: 0px;
+  margin-right: 10px
+}
+
+.height-img-menu{
+  height: 75px !important;
+  width: 75px !important;
+}
+
+.card-menu-avatar{
+  height: 100px !important;
+    padding: 10px;
+}
+
+#content-menu-avatar{
+  margin-left:10px
 }

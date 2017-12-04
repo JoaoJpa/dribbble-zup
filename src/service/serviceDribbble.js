@@ -7,12 +7,12 @@ let HEADER_AUTHORIZATION = {
 }
 
 export default{
-  getShots(params) {
-    return this.axios.get( URL + 'shots', {
+  get(tipo,params) {
+    return axios.get( URL + tipo, {
       headers: HEADER_AUTHORIZATION,
       params: params
     }).then(response =>{
       return response;
-    })
+    });
   }
 }

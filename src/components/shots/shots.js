@@ -1,29 +1,92 @@
-import DribbbleApi  from '../../service/DribbbleApi.js'
+import serviceDribbbleApi  from '../../service/serviceDribbble.js'
 
 export default {
-  props:['search'],
+  props:['search', 'sizeGrid', 'favorites'],
   data() {
     return {
-      cards: [
-        { title: 'Pre-fab homes', src: '/static/doc-images/cards/house.jpg', flex: 12 },
-        { title: 'Favorite road trips', src: '/static/doc-images/cards/road.jpg', flex: 6 },
-        { title: 'Best airlines', src: '/static/doc-images/cards/plane.jpg', flex: 6 }
-      ],
-      params: {}
+      shots: [],
+      pagina: 1,
+      loader: false,
+      idShotShowText: false,
+      tamanhoPage:40,
     }
   },
   methods: {
-    montarDados: function() {
-      DribbbleApi.getShots({page:1, per_page:50}).then(response =>{
-        console.log(response);
+    get(pagina, route) {
+      return serviceDribbbleApi.get(route, {page:pagina, per_page:this.tamanhoPage} );
+    },
+    endScrool(){
+      let pageHeightAndScrool = Math.round(window.innerHeight) + Math.round(window.scrollY);
+      let heightApp = Math.round(document.getElementById('app').clientHeight);
+      return pageHeightAndScrool === heightApp;
+    },
+    handleScroll(){
+
+      if(this.endScrool() && this.shots.length >= this.tamanhoPage){
+        this.loader = true;
+        this.pagina = this.pagina + 1;
+        if(this.favorites){
+          var aux = [];
+          this.get(this.pagina , 'user/likes').then(response =>{
+            this.getArrayFavorites(response.data, aux);
+            this.addShotsPage(aux);
+          });
+        }else{
+          this.get(this.pagina , 'shots').then(response =>{
+            this.addShotsPage(response.data);
+          });
+        }
+      }
+    },
+    addShotsPage(array){
+      this.shots = this.shots.concat(array);
+      this.loader = false;
+    },
+    setIdShowText(id){
+      this.idShotShowText = id;
+    },
+    checkIdShowText(id){
+      return this.idShotShowText === id;
+    },
+    setFalseIdShowText(){
+      this.idShotShowText =false;
+    },
+    getArrayFavorites(array, aux){
+      array.forEach(function (value) {
+        aux.push(value.shot);
+      });
+    }
+  },
+  mounted:function () {
+    this.get(this.pagina, 'shots').then(response =>{
+      this.shots = response.data;
+    });
+  },
+  created() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  computed:{
+    filterShotes:function () {
+      return this.shots.filter((search) => {
+        return search.title.toUpperCase().match(this.search.toUpperCase());
       })
     }
   },
-  computed:{
-    filter:function () {
-      return this.cards.filter((busca) => {
-        return busca.title.match(this.search);
-      })
+  watch:{
+    favorites:function (newValue, oldValue) {
+      this.shots = [];
+      this.pagina = 1;
+      if(newValue === true){
+        var aux = [];
+        this.get(this.pagina, 'user/likes').then(response =>{
+          this.getArrayFavorites(response.data, aux);
+          this.shots = aux;
+        });
+      }else{
+        this.get(this.pagina, 'shots').then(response =>{
+          this.shots = response.data;
+        });
+      }
     }
   }
 }

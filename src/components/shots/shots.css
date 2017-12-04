@@ -1,0 +1,36 @@
+#container-shots{
+  margin-top: 10px;
+  position: relative;
+  margin-top: 66px;
+}
+
+.shadow-title{
+  text-shadow: 1px 1px #585858;
+  font-size: 18px !important
+}
+
+.font-icon-shot{
+  font-size: 18px !important;
+}
+
+.font-number-icon{
+  font-size: 12px;
+}
+
+.transition-title{
+  padding:5px
+}
+
+.transition-title:hover{
+  background: #f7f7f7fa;
+  transition: background 1s ease-in-out;
+}
+
+.box-description{
+  overflow: auto;
+}
+
+#title-contaiter-shots{
+  margin-top: 10px;
+  text-align: center;
+}
