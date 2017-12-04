@@ -6,9 +6,9 @@
       </v-flex>
       <v-flex
         v-for="shot in filterShotes"
-        :key="shot.title"
+        :key="shot.id"
         v-bind="{ [`sm${sizeGrid.size}`]: true }" xs12>
-      <v-card class="ma-3" >
+      <v-card class="ma-4" >
         <v-card-media
                 v-on:mouseenter="setIdShowText(shot.id)"
                 v-on:mouseleave="setFalseIdShowText()"

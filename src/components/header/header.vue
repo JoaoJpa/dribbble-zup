@@ -4,6 +4,7 @@
       <v-menu
         offset-y
         :nudge-width="300"
+        :open-on-hover="true"
         class="hidden-xs-only menu-avatar">
         <v-avatar size="36px" slot="activator">
           <img :src="user.avatar_url" alt="">
