@@ -22,7 +22,7 @@
 }
 
 .transition-title:hover{
-  background: #f7f7f7fa;
+  background: rgba(245, 245, 245, 0.85);
   transition: background 1s ease-in-out;
 }
 
