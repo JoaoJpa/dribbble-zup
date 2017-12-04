@@ -19,9 +19,8 @@
       </v-tooltip>
       <v-menu
         offset-y
-        :nudge-width="120"
-        :open-on-hover="true"
-        max-height="50" class="hidden-xs-only menu-size-grid">
+        :nudge-width="180"
+        :open-on-hover="true" class="hidden-xs-only menu-size-grid">
         <v-btn icon slot="activator">
           <v-icon >burst_mode</v-icon>
         </v-btn>
