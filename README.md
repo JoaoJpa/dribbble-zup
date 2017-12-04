@@ -12,4 +12,5 @@ Init Project
 ========================
 
 - Clone this repository;
+- Open this repository and run the npm install command;
 - npm start, the browser will then open.
