@@ -12,7 +12,7 @@ Vue.use(VueAxios, axios)
 
 Vue.use(Vuetify, {
   theme: {
-    primary: 'rgba(47,47,47,0.98)',
+    primary: 'rgba(47,47,47,0.88)',
     secondary: '#999',
     accent: '#8c9eff',
     error: '#b71c1c'
